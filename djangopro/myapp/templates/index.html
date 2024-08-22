@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> MUHAMMAD-HB</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+</head>
+<body>
+    <header>
+        <h1>PERSONAL WEB</h1>
+        <p>MUHAMMAD BUNYARIT</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="{% static 'images/IMG_1238.JPG' %}" alt="Muhammad Bunyarit" class="profile-picture">
+            <p>{{ about_content.content }}</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects & Programs</h2>
+        <ul>
+            {% for project in projects %}
+                <li>{{ project.name }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            {% for skill in skills %}
+                <li>{{ skill.name }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 MUHAMMAD-HB. All rights reserved.</p>
+    </footer>
+
+    <script type="text/JavaScript" src="{% static 'script.js' %}"></script>
+</body>
+</html>
