@@ -1,19 +1,14 @@
-import os
-import django
-from django.conf import settings
-from django.contrib.gis.geoip2 import GeoIP2
+import geoip2.database
 
-# إعداد متغير البيئة لتحديد إعدادات Django
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangopro.settings')
-django.setup()
+db_path = 'C:/Users/M/Downloads/GeoLite2-City_20240823/GeoLite2-City_20240823/GeoLite2-City.mmdb'
 
 def test_geoip(ip_address):
     try:
-        g = GeoIP2()
-        location = g.city(ip_address)
-        print(location)
+        with geoip2.database.Reader(db_path) as reader:
+            response = reader.city(ip_address)
+            print("City:", response.city.name)
+            print("Country:", response.country.name)
     except Exception as e:
         print("Error:", e)
 
-# استبدل '8.8.8.8' بعنوان IP معروف
-test_geoip('8.8.8.8')
+test_geoip('185.212.169.106')  # استخدم عنوان IP معروف للتجربة
