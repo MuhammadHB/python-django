@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUHAMMAD-HB</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+    <script src="{% static 'script.js' %}" defer></script>
+</head>
+<body>
+    <header>
+        <h1>PERSONAL WEB</h1>
+        <p>MUHAMMAD BUNYARIT</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+        </ul>
+    </nav>
+
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <img src="{% static 'images/IMG_1238.JPG' %}" alt="Muhammad Bunyarit" class="profile-picture">
+            <p>{{ about_content.content }}</p>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2>Projects & Programs</h2>
+        <ul>
+            {% for project in projects %}
+                <li>{{ project.name }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <ul>
+            {% for skill in skills %}
+                <li>{{ skill.name }}</li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <section id="visitor-count">
+        <h2>Visitor Count</h2>
+        <p>Total Visitors: {{ visitor_count }}</p>
+    </section>
+
+    <section id="comment-form">
+        <h2>Leave a Comment</h2>
+        <form id="contact-form">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+    </section>
+
+    <section id="post-comment">
+        <h2>Post a Comment on Facebook</h2>
+        <form id="facebook-comment-form">
+            <input type="hidden" id="post-id" value="your_facebook_post_id">
+            <textarea id="comment-message" placeholder="Write a comment" required></textarea>
+            <button type="submit">Post Comment</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 MUHAMMAD-HB. All rights reserved.</p>
+    </footer>
+</body>
+</html>
